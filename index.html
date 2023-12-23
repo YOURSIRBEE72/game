@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Website</title>
+</head>
+<body>
+    <h1 id="number-display">Loading...</h1>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', async () => {
+            // Fetch the current number from a server endpoint
+            const response = await fetch('/getNumber');
+            const data = await response.json();
+
+            // Display the current number
+            const numberDisplay = document.getElementById('number-display');
+            numberDisplay.textContent = `Current number: ${data.number}`;
+        });
+    </script>
+</body>
+</html>
