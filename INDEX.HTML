@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Number Display</title>
+
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #1a1a1a; /* Dark background color */
+            color: #ffffff; /* Light text color */
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+
+        h1 {
+            color: #42a5f5; /* Accent color */
+        }
+
+        #numberDisplay {
+            margin-top: 20px;
+            font-size: 24px;
+        }
+    </style>
+</head>
+<body>
+
+    <h1>Number Display</h1>
+    
+    <div id="numberDisplay">
+        <!-- The number will be displayed here -->
+    </div>
+
+    <script>
+        // Use an asynchronous function to fetch the content of the number.txt file
+        async function fetchNumber() {
+            try {
+                // Fetch the content of the number.txt file
+                const response = await fetch('number.txt');
+
+                // Check if the fetch was successful (status code 200)
+                if (response.ok) {
+                    // Get the text content of the file
+                    const numberText = await response.text();
+
+                    // Display the number on the webpage
+                    document.getElementById('numberDisplay').innerText = `Number: ${numberText}`;
+                } else {
+                    console.error('Failed to fetch number.txt');
+                }
+            } catch (error) {
+                console.error('Error fetching number.txt:', error.message);
+            }
+        }
+
+        // Call the fetchNumber function when the page loads
+        window.onload = fetchNumber;
+    </script>
+
+</body>
+</html>
