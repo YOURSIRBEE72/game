@@ -9,15 +9,19 @@
     <h1 id="number-display">Loading...</h1>
 
     <script>
-        document.addEventListener('DOMContentLoaded', async () => {
-            // Fetch the current number from a server endpoint
-            const response = await fetch('/getNumber');
-            const data = await response.json();
+        // Read the current number from local storage or set it to 1 if not exists
+        let currentNumber = localStorage.getItem('number') || 1;
 
-            // Display the current number
-            const numberDisplay = document.getElementById('number-display');
-            numberDisplay.textContent = `Current number: ${data.number}`;
-        });
+        // Display the current number
+        const numberDisplay = document.getElementById('number-display');
+        numberDisplay.textContent = `Current number: ${currentNumber}`;
+
+        // Increment the number when the page loads
+        currentNumber++;
+        localStorage.setItem('number', currentNumber);
+
+        // Update the displayed number
+        numberDisplay.textContent = `Incremented number: ${currentNumber}`;
     </script>
 </body>
 </html>
